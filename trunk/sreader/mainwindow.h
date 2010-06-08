@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
 
 namespace Ui {
     class MainWindow;
@@ -19,12 +20,21 @@ protected:
 private:
     Ui::MainWindow *ui;
 
-    void updatefile(QString &filePath);
+    void updatefile(QFile &file);
 
     int wordSpacing;
+    static int bufferSize;
+    QString contentBuffer;
+    QFile file;
 
 private slots:
     void on_actionOpen_triggered();
+    void scrollchanged(int value);
+
+
+
+
+
 };
 
 #endif // MAINWINDOW_H

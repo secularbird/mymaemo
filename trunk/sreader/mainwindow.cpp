@@ -4,10 +4,14 @@
 #include <QTextStream>
 #include <QFont>
 #include <QFileDialog>
+#include <QScrollBar>
+
 
 #include <QtGlobal>
 
 #include <QDebug>
+
+int MainWindow::bufferSize = 10240;
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -15,13 +19,17 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QScrollBar *vScrollBar = ui->textBrowser->verticalScrollBar();
+    connect(vScrollBar,SIGNAL(valueChanged(int)), this, SLOT(scrollchanged(int)));
+
     wordSpacing = 20;
 
     QFont sansFont("Helvetica [Cronyx]", 20);
-    wordSpacing = sansFont.weight()+sansFont.wordSpacing();
+    wordSpacing = sansFont.pointSize()+sansFont.wordSpacing();
+    qDebug()<<"word space is "<<wordSpacing;
     ui->textBrowser->setFont(sansFont);
-    ui->textBrowser->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->textBrowser->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    ui->textBrowser->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    ui->textBrowser->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     ui->mainToolBar->hide();
 
@@ -49,51 +57,43 @@ void MainWindow::on_actionOpen_triggered()
     /*open file dialog*/
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Open txt file"), "/home/", tr("txt Files (*.txt)"));
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setNameFilter(tr("text (*.txt)"));
 
-    updatefile(fileName);
-}
+    dialog.setViewMode(QFileDialog::List);
 
-void MainWindow::updatefile(QString &filePath)
-{
-
-    QFile file(filePath);
+    file.setFileName(fileName);
     if (!file.open(QIODevice::ReadOnly))
         return;
 
-    QTextStream in(&file);
-    QString pageContent ;
-    QString pageBuffer;
-    int charNum = ui->textBrowser->size().width() * ui->textBrowser->size().height()
-                  / wordSpacing/ wordSpacing;
-    int lineCharNum = ui->textBrowser->size().width()/wordSpacing;
-    int lineNum = ui->textBrowser->size().height()/wordSpacing;
-    int realLineNum=0;
-    int charCount=0;
-    pageContent = in.readAll();
-//   pageBuffer = in.read(charNum);
-/*    for (int i = 0; i<pageBuffer.length(); i++)
-    {
-        if(realLineNum == lineNum)
-        {
-            break;
-        }
-        if(pageBuffer[i] == '\n')
-        {
-            realLineNum ++;
-            charCount = 0;
-        }
-        else {
-            charCount ++;
-            if (charCount == lineCharNum)
-            {
-                realLineNum++;
-                charCount = 0;
-            }
-        }
-        qDebug() <<"i \t"<< pageBuffer[i];
-        pageContent.append(pageBuffer[i]);
-    }
-*/
-    ui->textBrowser->setPlainText(pageContent);
+    updatefile(file);
+}
 
+
+void MainWindow::updatefile(QFile &file)
+{
+    QTextStream in(&file);
+
+    contentBuffer += in.read(bufferSize);
+
+    ui->textBrowser->setPlainText(contentBuffer);
+
+}
+
+
+void MainWindow::scrollchanged(int value)
+{
+    Q_UNUSED(value);
+    qDebug()<<"valuechange"<<value;
+
+    QScrollBar *vScrollBar = ui->textBrowser->verticalScrollBar();
+    int length =  vScrollBar->maximum() - vScrollBar->minimum() + vScrollBar->pageStep();
+    qDebug()<<"lenght is "<<length;
+    if (value > 0.5*length)
+    {
+        updatefile(file);
+        vScrollBar->setValue(value);
+        qDebug()<<"refresh";
+    }
 }
