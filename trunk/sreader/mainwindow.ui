@@ -42,12 +42,18 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionFont_Setting"/>
    </widget>
    <addaction name="menuOpen"/>
   </widget>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionFont_Setting">
+   <property name="text">
+    <string>Font Setting</string>
    </property>
   </action>
  </widget>

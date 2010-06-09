@@ -5,7 +5,7 @@
 #include <QFont>
 #include <QFileDialog>
 #include <QScrollBar>
-
+#include <QFontDialog>
 
 #include <QtGlobal>
 
@@ -55,19 +55,13 @@ void MainWindow::changeEvent(QEvent *e)
 void MainWindow::on_actionOpen_triggered()
 {
     /*open file dialog*/
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("Open txt file"), "/home/", tr("txt Files (*.txt)"));
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.setNameFilter(tr("text (*.txt)"));
-
     dialog.setViewMode(QFileDialog::List);
-
-    file.setFileName(fileName);
-    if (!file.open(QIODevice::ReadOnly))
-        return;
-
-    updatefile(file);
+    dialog.setDirectory("/home/");
+    dialog.open(this, SLOT(fileChanged(const QString&)));
+    dialog.exec();
 }
 
 
@@ -84,7 +78,6 @@ void MainWindow::updatefile(QFile &file)
 
 void MainWindow::scrollchanged(int value)
 {
-    Q_UNUSED(value);
     qDebug()<<"valuechange"<<value;
 
     QScrollBar *vScrollBar = ui->textBrowser->verticalScrollBar();
@@ -96,4 +89,30 @@ void MainWindow::scrollchanged(int value)
         vScrollBar->setValue(value);
         qDebug()<<"refresh";
     }
+}
+
+void MainWindow::on_actionFont_Setting_triggered()
+{
+    QFontDialog fontDialog(this);
+//    fontDialog.setOption(QFontDialog::NoButtons,true);
+    fontDialog.open(this, SLOT(fontChanged(QFont)));
+    fontDialog.exec();
+}
+
+void MainWindow::fontChanged(QFont font)
+{
+    ui->textBrowser->setFont(font);
+}
+
+void MainWindow::fileChanged(const QString &filePath)
+{
+    if (file.isOpen())
+    {
+        file.close();
+    }
+    file.setFileName(filePath);
+    if (!file.open(QIODevice::ReadOnly))
+        return;
+
+    updatefile(file);
 }
