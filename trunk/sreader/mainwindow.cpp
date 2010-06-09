@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setWindowTitle(tr("sreader"));
     QScrollBar *vScrollBar = ui->textBrowser->verticalScrollBar();
     connect(vScrollBar,SIGNAL(valueChanged(int)), this, SLOT(scrollchanged(int)));
 
@@ -58,7 +59,7 @@ void MainWindow::on_actionOpen_triggered()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.setNameFilter(tr("text (*.txt)"));
-    dialog.setViewMode(QFileDialog::List);
+    dialog.setViewMode(QFileDialog::Detail);
     dialog.setDirectory("/home/");
     dialog.open(this, SLOT(fileChanged(const QString&)));
     dialog.exec();
