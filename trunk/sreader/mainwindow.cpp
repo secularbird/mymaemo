@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "mmm_fontdialog.h"
+
 #include <QFile>
 #include <QTextStream>
 #include <QFont>
@@ -56,13 +58,20 @@ void MainWindow::changeEvent(QEvent *e)
 void MainWindow::on_actionOpen_triggered()
 {
     /*open file dialog*/
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFile);
-    dialog.setNameFilter(tr("text (*.txt)"));
-    dialog.setViewMode(QFileDialog::Detail);
-    dialog.setDirectory("/home/");
-    dialog.open(this, SLOT(fileChanged(const QString&)));
-    dialog.exec();
+    QString filePath = QFileDialog::getOpenFileName(this,
+                                                    tr("Open file"), "/home/", tr("Text Files (*.txt)"));
+    if (file.isOpen())
+    {
+        contentBuffer.clear();
+        file.close();
+    }
+    file.setFileName(filePath);
+    if (!file.open(QIODevice::ReadOnly))
+        return;
+
+    updatefile(file);
+    QFileInfo fi(filePath);
+    this->setWindowTitle(fi.baseName());
 }
 
 
@@ -94,26 +103,15 @@ void MainWindow::scrollchanged(int value)
 
 void MainWindow::on_actionFont_Setting_triggered()
 {
-    QFontDialog fontDialog(this);
+//    QFontDialog fontDialog(this);
 //    fontDialog.setOption(QFontDialog::NoButtons,true);
-    fontDialog.open(this, SLOT(fontChanged(QFont)));
+//    fontDialog.open(this, SLOT(fontChanged(QFont)));
+//    fontDialog.exec();
+    mmm_fontDialog fontDialog;
     fontDialog.exec();
 }
 
 void MainWindow::fontChanged(QFont font)
 {
     ui->textBrowser->setFont(font);
-}
-
-void MainWindow::fileChanged(const QString &filePath)
-{
-    if (file.isOpen())
-    {
-        file.close();
-    }
-    file.setFileName(filePath);
-    if (!file.open(QIODevice::ReadOnly))
-        return;
-
-    updatefile(file);
 }

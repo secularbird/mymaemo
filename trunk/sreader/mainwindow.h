@@ -31,12 +31,7 @@ private slots:
     void on_actionFont_Setting_triggered();
     void on_actionOpen_triggered();
     void scrollchanged(int value);
-    void fileChanged(const QString& filePath);
     void fontChanged(QFont font);
-
-
-
-
 
 };
 

@@ -1,44 +1,27 @@
-#-------------------------------------------------
-#
+# -------------------------------------------------
 # Project created by QtCreator 2010-06-05T16:39:55
-#
-#-------------------------------------------------
-
-QT       += sql
-
+# -------------------------------------------------
+QT += sql
 TARGET = sreader
 TEMPLATE = app
-
-
-SOURCES += main.cpp\
-        mainwindow.cpp
-
-HEADERS  += mainwindow.h
-
-FORMS    += mainwindow.ui
+SOURCES += main.cpp \
+    mainwindow.cpp \
+    mmm_fontdialog.cpp
+HEADERS += mainwindow.h \
+    mmm_fontdialog.h
+FORMS += mainwindow.ui
 
 # -----------------------------------------------------------------
-#                      Added section
+# Added section
 # -----------------------------------------------------------------
-unix {
-#VARIABLES
-    isEmpty(PREFIX) {
-            PREFIX = /opt/$${TARGET}
-    }
-BINDIR = /opt/$${TARGET}/bin
-
-DEFINES += DATADIR=\"$$DATADIR\" PKGDATADIR=\"$$PKGDATADIR\"
-
-#MAKE INSTALL
-
-INSTALLS += target 
-
-target.path =$$BINDIR
-
-#desktop.path = $$DATADIR/applications/hildon
-#desktop.files += $${TARGET}.desktop
-
-#image.path = $$DATADIR
-#desktop.files += $${TARGET}.png
-
+unix { 
+    # VARIABLES
+    isEmpty(PREFIX):PREFIX = /opt/$${TARGET}
+    BINDIR = /opt/$${TARGET}/bin
+    DEFINES += DATADIR=\"$$DATADIR\" \
+        PKGDATADIR=\"$$PKGDATADIR\"
+    
+    # MAKE INSTALL
+    INSTALLS += target
+    target.path = $$BINDIR
 }

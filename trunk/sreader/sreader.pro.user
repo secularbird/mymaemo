@@ -76,7 +76,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3fv53MPsvB,guid=523003f86539f29ddfd01b954c0e30da</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-GGyO8OgfI1,guid=b263b3064240971b4ba757794c0facb1</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -84,9 +84,9 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
     <value type="QString">GDM_LANG=en_US.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-mAnSNe</value>
-    <value type="QString">GNOME_KEYRING_PID=1676</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-8sRKSm/S.gpg-agent:1750:1</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-R8PH1R</value>
+    <value type="QString">GNOME_KEYRING_PID=1683</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-3Hhb5u/S.gpg-agent:1757:1</value>
     <value type="QString">GTK_IM_MODULE=xim</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/secularbird</value>
@@ -100,16 +100,16 @@
     <value type="QString">PWD=/home/secularbird</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
     <value type="QString">QT_IM_MODULE=xim</value>
-    <value type="QString">SESSION_MANAGER=local/secularbird-laptop:@/tmp/.ICE-unix/1694,unix/secularbird-laptop:/tmp/.ICE-unix/1694</value>
+    <value type="QString">SESSION_MANAGER=local/secularbird-laptop:@/tmp/.ICE-unix/1701,unix/secularbird-laptop:/tmp/.ICE-unix/1701</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-mAnSNe/ssh</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-R8PH1R/ssh</value>
     <value type="QString">USER=secularbird</value>
     <value type="QString">USERNAME=secularbird</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-secularbird-Rvuj5r/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-secularbird-lBeE9k/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=d5f7d3f38bf28b4127f0c9284b9f13cc-1275998423.51624-1458375568</value>
+    <value type="QString">XDG_SESSION_COOKIE=d5f7d3f38bf28b4127f0c9284b9f13cc-1276095662.691056-1536567730</value>
     <value type="QString">XMODIFIERS=@im=SCIM</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
@@ -129,7 +129,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3fv53MPsvB,guid=523003f86539f29ddfd01b954c0e30da</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-GGyO8OgfI1,guid=b263b3064240971b4ba757794c0facb1</value>
     <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
     <value type="QString">DESKTOP_SESSION=gnome</value>
     <value type="QString">DISPLAY=:0.0</value>
@@ -137,9 +137,9 @@
     <value type="QString">GDM_KEYBOARD_LAYOUT=us</value>
     <value type="QString">GDM_LANG=en_US.utf8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-mAnSNe</value>
-    <value type="QString">GNOME_KEYRING_PID=1676</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-8sRKSm/S.gpg-agent:1750:1</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-R8PH1R</value>
+    <value type="QString">GNOME_KEYRING_PID=1683</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-3Hhb5u/S.gpg-agent:1757:1</value>
     <value type="QString">GTK_IM_MODULE=xim</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">HOME=/home/secularbird</value>
@@ -153,16 +153,16 @@
     <value type="QString">PWD=/home/secularbird</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
     <value type="QString">QT_IM_MODULE=xim</value>
-    <value type="QString">SESSION_MANAGER=local/secularbird-laptop:@/tmp/.ICE-unix/1694,unix/secularbird-laptop:/tmp/.ICE-unix/1694</value>
+    <value type="QString">SESSION_MANAGER=local/secularbird-laptop:@/tmp/.ICE-unix/1701,unix/secularbird-laptop:/tmp/.ICE-unix/1701</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SPEECHD_PORT=7560</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-mAnSNe/ssh</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-R8PH1R/ssh</value>
     <value type="QString">USER=secularbird</value>
     <value type="QString">USERNAME=secularbird</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-secularbird-Rvuj5r/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-secularbird-lBeE9k/database</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=d5f7d3f38bf28b4127f0c9284b9f13cc-1275998423.51624-1458375568</value>
+    <value type="QString">XDG_SESSION_COOKIE=d5f7d3f38bf28b4127f0c9284b9f13cc-1276095662.691056-1536567730</value>
     <value type="QString">XMODIFIERS=@im=SCIM</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
