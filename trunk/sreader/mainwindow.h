@@ -31,7 +31,7 @@ private slots:
     void on_actionFont_Setting_triggered();
     void on_actionOpen_triggered();
     void scrollchanged(int value);
-    void fontChanged(QFont font);
+    void fontChanged(QFont &font);
 
 };
 

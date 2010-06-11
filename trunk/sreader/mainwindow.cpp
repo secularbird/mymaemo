@@ -108,10 +108,11 @@ void MainWindow::on_actionFont_Setting_triggered()
 //    fontDialog.open(this, SLOT(fontChanged(QFont)));
 //    fontDialog.exec();
     mmm_fontDialog fontDialog;
+    connect(&fontDialog, SIGNAL(fontChanged(QFont&)), this, SLOT(fontChanged(QFont&)));
     fontDialog.exec();
 }
 
-void MainWindow::fontChanged(QFont font)
+void MainWindow::fontChanged(QFont &font)
 {
     ui->textBrowser->setFont(font);
 }
