@@ -1,0 +1,11 @@
+Source: sreader
+Section: user/other
+Priority: extra
+Maintainer: yaozhuang <secularbird.eagle@gmail.com>
+Build-Depends: debhelper (>= 5), qt4-qmake, qt4-dev-tools, libqt4-core, libqt4-gui, libqt4-dev
+Standards-Version: 3.7.2
+
+Package: sreader
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: sreader
