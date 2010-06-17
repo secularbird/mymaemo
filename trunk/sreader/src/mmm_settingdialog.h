@@ -1,15 +1,15 @@
-#ifndef MMM_FONTDIALOG_H
-#define MMM_FONTDIALOG_H
+#ifndef MMM_SETTINGDIALOG_H
+#define MMM_SETTINGDIALOG_H
 
 #include <QtGui/QDialog>
 #include <QtGui/QListWidget>
 
 
-class mmm_fontDialog : public QDialog
+class mmm_settingDialog : public QDialog
 {
     Q_OBJECT
 public:
-    mmm_fontDialog();
+    mmm_settingDialog();
     void setDefaultFont(QFont &font);
     const QFont &getFont() const;
 
@@ -36,4 +36,4 @@ private:
     QFont mFont;
 };
 
-#endif // MMM_FONTDIALOG_H
+#endif // mmm_settingDialog_H

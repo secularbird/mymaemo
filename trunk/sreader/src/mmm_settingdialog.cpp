@@ -1,10 +1,10 @@
-#include "mmm_fontdialog.h"
+#include "mmm_settingdialog.h"
 #include <QtGui/QGridLayout>
 #include <QtGui/QFontDatabase>
 
 #include <QtCore/QDebug>
 
-mmm_fontDialog::mmm_fontDialog()
+mmm_settingDialog::mmm_settingDialog()
 {
     QStringList fontFamily;
 
@@ -33,7 +33,7 @@ mmm_fontDialog::mmm_fontDialog()
 }
 
 
-void mmm_fontDialog::updateFontStyle()
+void mmm_settingDialog::updateFontStyle()
 {
     QList<QListWidgetItem *> itemList = fontFamilyList->selectedItems();
     fontFamily = itemList.first()->text();
@@ -44,7 +44,7 @@ void mmm_fontDialog::updateFontStyle()
     fontStyleList->addItems(fontStyle);
 }
 
-void mmm_fontDialog::updateFontsize()
+void mmm_settingDialog::updateFontsize()
 {
     QList<QListWidgetItem *> styleitemList = fontStyleList->selectedItems();
     fontStyle = styleitemList.first()->text();
@@ -68,18 +68,18 @@ void mmm_fontDialog::updateFontsize()
     fontSizeList->addItems(fontSizeStringList);
 }
 
-void mmm_fontDialog::setDefaultFont(QFont &font)
+void mmm_settingDialog::setDefaultFont(QFont &font)
 {
     mFont = font;
 }
 
 
-const QFont& mmm_fontDialog::getFont() const
+const QFont& mmm_settingDialog::getFont() const
 {
     return mFont;
 }
 
-void mmm_fontDialog::updateFont()
+void mmm_settingDialog::updateFont()
 {
     QList<QListWidgetItem *> sizeitemList = fontSizeList->selectedItems();
     bool ok = true;
@@ -88,7 +88,7 @@ void mmm_fontDialog::updateFont()
     mFont = fontDatabase.font(fontFamily, fontStyle, fontPointSize);
 }
 
-void mmm_fontDialog::closeEvent ( QCloseEvent * e )
+void mmm_settingDialog::closeEvent ( QCloseEvent * e )
 {
     emit fontChanged(mFont);
     QDialog::closeEvent(e);
