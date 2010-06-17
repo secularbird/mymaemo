@@ -42,6 +42,14 @@ FORMS		= uiform/mainwindow.ui
 
 # install
 target.path = /opt/sreader/bin
-INSTALLS += target
 
+desktop.path = /usr/share/applications/hildon
+desktop.files += resource/sreader.desktop
+
+icons32.files += resource/32X32/sreader.png
+icons32.path = /usr/share/icons/hicolor/32x32/apps/
+
+#32X32icons.path = /usr/share/icons/hicolor/scalable/apps/
+
+INSTALLS += target desktop icons32
 
