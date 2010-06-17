@@ -22,11 +22,16 @@ QMAKE_CLEAN += $$DESTDIR/sreader
 # }
 
 HEADERS     = src/mainwindow.h \
-			  src/mmm_fontdialog.h
+			  src/mmm_settingdialog.h \
+			  src/mmm_configuremanager.h \
+			  src/system.h
 SOURCES     = src/main.cpp \
               src/mainwindow.cpp \
-              src/mmm_fontdialog.cpp
-FORMS		= uiform/mainwindow.ui
+              src/mmm_settingdialog.cpp \
+              src/mmm_configuremanager.cpp \
+              src/system.cpp
+              
+FORMS		= uiform/mainwindow.ui 
 
 # TEMPLATE = app
 # DESTDIR = /path/to/installation
@@ -36,7 +41,7 @@ FORMS		= uiform/mainwindow.ui
 # PKGCONFIG += ogg dbus-1
 
 # install
-target.path = /opt/sreader
+target.path = /opt/sreader/bin
 INSTALLS += target
 
 

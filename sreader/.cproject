@@ -841,5 +841,77 @@
 </storageModule>
 <storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cconfiguration>
+<cconfiguration id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078">
+<storageModule buildSystemId="org.maemo.mica.cpp.project.core.CConfigurationDataProvider" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078" moduleId="org.eclipse.cdt.core.settings" name="FREMANTLE_ARMEL (Debug)">
+<externalSettings/>
+<extensions>
+<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.maemo.mica.cpp.project.builder.autotools.MicaAutotoolsErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+</extensions>
+</storageModule>
+<storageModule moduleId="buildConfig" sdkDisplayName="Scratchbox 1 (/scratchbox/)" sdkName="Scratchbox 1" stockConfigurationId="org.maemo.mica.cpp.project.builder.make.make.debug" targetName="FREMANTLE_ARMEL"/>
+<storageModule moduleId="buildConfig.metaData"/>
+<storageModule environmentOp_0="CFLAGS=-O0 -g" environmentOp_1="CXXFLAGS=-O0 -g" moduleId="buildConfig.environment"/>
+<storageModule id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078" moduleId="defaultConfigurationDataProvider" name="FREMANTLE_ARMEL (Debug)">
+<sourceEntries/>
+<folderData id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078.1966817653" name="" path="">
+<languageData contentTypeIds="org.eclipse.cdt.core.asmSource" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078.1966817653.811760316" languageId="org.eclipse.cdt.core.assembly" name="Assembly" supportedEntryKinds="includePath;includeFile;macro;macroFile">
+<settingEntries/>
+</languageData>
+<languageData contentTypeIds="org.eclipse.cdt.core.cxxSource;org.eclipse.cdt.core.cxxHeader" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078.1966817653.984536469" languageId="org.eclipse.cdt.core.g++" name="GNU C++" supportedEntryKinds="includePath;includeFile;macro;macroFile">
+<settingEntries/>
+</languageData>
+<languageData contentTypeIds="org.eclipse.cdt.core.cSource;org.eclipse.cdt.core.cHeader" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078.1966817653.467561381" languageId="org.eclipse.cdt.core.gcc" name="GNU C" supportedEntryKinds="includePath;includeFile;macro;macroFile">
+<settingEntries/>
+</languageData>
+</folderData>
+<buildData errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.VCErrorParser;org.maemo.mica.cpp.project.builder.autotools.MicaAutotoolsErrorParser" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078.1445881356"/>
+<targetPlatformData binaryParsers="org.eclipse.cdt.core.ELF" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580078.1664484976"/>
+</storageModule>
+<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cconfiguration>
+<cconfiguration id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081">
+<storageModule buildSystemId="org.maemo.mica.cpp.project.core.CConfigurationDataProvider" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081" moduleId="org.eclipse.cdt.core.settings" name="FREMANTLE_ARMEL (Optimized)">
+<externalSettings/>
+<extensions>
+<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.maemo.mica.cpp.project.builder.autotools.MicaAutotoolsErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+</extensions>
+</storageModule>
+<storageModule moduleId="buildConfig" sdkDisplayName="Scratchbox 1 (/scratchbox/)" sdkName="Scratchbox 1" stockConfigurationId="org.maemo.mica.cpp.project.builder.make.make.optimized" targetName="FREMANTLE_ARMEL"/>
+<storageModule moduleId="buildConfig.metaData"/>
+<storageModule environmentOp_0="CFLAGS=-O2 -g" environmentOp_1="CXXFLAGS=-O2 -g" moduleId="buildConfig.environment"/>
+<storageModule id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081" moduleId="defaultConfigurationDataProvider" name="FREMANTLE_ARMEL (Optimized)">
+<sourceEntries/>
+<folderData id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081.850133688" name="" path="">
+<languageData contentTypeIds="org.eclipse.cdt.core.asmSource" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081.850133688.529988521" languageId="org.eclipse.cdt.core.assembly" name="Assembly" supportedEntryKinds="includePath;includeFile;macro;macroFile">
+<settingEntries/>
+</languageData>
+<languageData contentTypeIds="org.eclipse.cdt.core.cxxSource;org.eclipse.cdt.core.cxxHeader" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081.850133688.684013216" languageId="org.eclipse.cdt.core.g++" name="GNU C++" supportedEntryKinds="includePath;includeFile;macro;macroFile">
+<settingEntries/>
+</languageData>
+<languageData contentTypeIds="org.eclipse.cdt.core.cSource;org.eclipse.cdt.core.cHeader" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081.850133688.665670579" languageId="org.eclipse.cdt.core.gcc" name="GNU C" supportedEntryKinds="includePath;includeFile;macro;macroFile">
+<settingEntries/>
+</languageData>
+</folderData>
+<buildData errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.VCErrorParser;org.maemo.mica.cpp.project.builder.autotools.MicaAutotoolsErrorParser" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081.483872282"/>
+<targetPlatformData binaryParsers="org.eclipse.cdt.core.ELF" id="Scratchbox 1~FREMANTLE_ARMEL.1276669580081.1871734562"/>
+</storageModule>
+<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cconfiguration>
 </storageModule>
 </cproject>
