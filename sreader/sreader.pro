@@ -24,11 +24,13 @@ QMAKE_CLEAN += $$DESTDIR/sreader
 HEADERS     = src/mainwindow.h \
 			  src/mmm_settingdialog.h \
 			  src/mmm_configuremanager.h \
+			  src/filereader.h \
 			  src/system.h
 SOURCES     = src/main.cpp \
               src/mainwindow.cpp \
               src/mmm_settingdialog.cpp \
               src/mmm_configuremanager.cpp \
+              src/filereader.cpp \
               src/system.cpp
               
 FORMS		= uiform/mainwindow.ui 
