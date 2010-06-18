@@ -29,7 +29,6 @@ private:
     void updatefile(QFile &file);
     void prePage();
     void nextPage();
-    int getShowNum(const QString &buffer);
 
     static int bufferSize;
     QString contentBuffer;

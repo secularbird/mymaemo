@@ -1,3 +1,5 @@
+#ifndef MMM_CONFIGUREMANAGER_H
+#define MMM_CONFIGUREMANAGER_H
 #include <QtCore/QSettings>
 #include <QtGui/QFont>
 
@@ -26,3 +28,4 @@ private:
 	QSettings *setting;
 
 };
+#endif

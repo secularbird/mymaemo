@@ -1,3 +1,6 @@
+#ifndef MMM_SYSTEM_H
+#define MMM_SYSTEM_H
+
 class system
 {
 public:
@@ -9,3 +12,5 @@ private:
 	~system();
 
 };
+
+#endif
