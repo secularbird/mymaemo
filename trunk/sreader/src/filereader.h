@@ -5,7 +5,7 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QSize>
 #include <QtGui/QFont>
-
+#include <QtCore/QStringList>
 
 class fileReader:public QObject
 {
@@ -16,8 +16,10 @@ public:
 	void setShowArea(int height, int width);
 
 	QString &getShowContent(const QFont &font);
+	QStringList &getShowContentList(const QFont &font);
 
 	QString &getCurShowContent(const QFont &font);
+	QStringList &getCurShowContentList(const QFont &font);
 
 private:
 	fileReader();
@@ -35,6 +37,7 @@ private:
 	qint64 curpos;
 	qint64 lastpos;
 	QString contentBuffer;
+	QStringList contentlist;
 };
 
 

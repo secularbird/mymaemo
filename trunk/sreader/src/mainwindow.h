@@ -5,6 +5,8 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 
+#include "textbrowzerview.h"
+
 class QScrollBar;
 class QTextStream;
 
@@ -34,10 +36,10 @@ private:
     QString contentBuffer;
     QTextStream *in;
     QFile file;
-    int lastPos;
+//    int lastPos;
 //   QScrollBar *vScrollBar;
     QPoint startPoint;
-
+    TextBrowzerView *textbrowzerview;
 
 private slots:
     void on_actionFont_Setting_triggered();

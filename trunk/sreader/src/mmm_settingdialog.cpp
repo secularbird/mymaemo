@@ -8,8 +8,6 @@ mmm_settingDialog::mmm_settingDialog()
 {
     QStringList fontFamily;
 
-    QStringList fontSize;
-
     fontFamilyList = new QListWidget(this);
     fontStyleList = new QListWidget(this);
     fontSizeList = new QListWidget(this);
@@ -23,10 +21,12 @@ mmm_settingDialog::mmm_settingDialog()
     connect(fontStyleList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(updateFontsize()));
     connect(fontSizeList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(updateFont()));
 
-    QGridLayout *gridLayout = new QGridLayout(this);
-    gridLayout->addWidget(fontFamilyList,0,0);
-    gridLayout->addWidget(fontStyleList,0,1);
-    gridLayout->addWidget(fontSizeList,0,2);
+    fontFamilyList->setMinimumWidth(400);
+
+    QHBoxLayout *gridLayout = new QHBoxLayout(this);
+    gridLayout->addWidget(fontFamilyList);
+    gridLayout->addWidget(fontStyleList);
+    gridLayout->addWidget(fontSizeList);
 
     this->setLayout(gridLayout);
 
@@ -68,9 +68,24 @@ void mmm_settingDialog::updateFontsize()
     fontSizeList->addItems(fontSizeStringList);
 }
 
-void mmm_settingDialog::setDefaultFont(QFont &font)
+void mmm_settingDialog::setDefaultFont(const QFont &font)
 {
+	QStringList fontfamily;
+	int index=0;
+	QFontDatabase fontDatabase;
+	fontfamily = fontDatabase.families();
     mFont = font;
+    //find the famliy
+    index = fontfamily.indexOf(mFont.family());
+    QListWidgetItem* item = fontFamilyList->item(index);
+    if (NULL == item)
+    {
+    	return;
+    }
+    item->setSelected(true);
+
+    //find the style
+    //find the size
 }
 
 
