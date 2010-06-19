@@ -26,7 +26,7 @@ protected:
 private:
     Ui::MainWindow *ui;
 
-    void updatefile(QFile &file);
+    void updatefile();
     void prePage();
     void nextPage();
 
@@ -44,7 +44,7 @@ private slots:
     void on_actionOpen_triggered();
  //   void scrollchanged(int value);
     void fontChanged(QFont &font);
-
+    void orientationChanged();
 };
 
 #endif // MAINWINDOW_H
