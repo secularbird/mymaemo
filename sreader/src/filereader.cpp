@@ -12,12 +12,17 @@ fileReader::fileReader()
 	file = new QFile;
 	in = new QTextStream;
 	area = QSize(800,480);
+	curpos = 0;
 }
 
 fileReader::~fileReader()
 {
-	delete file;
 	delete in;
+	if (file->isOpen())
+	{
+		file->close();
+	}
+	delete file;
 }
 
 fileReader* fileReader::instance()
@@ -57,13 +62,13 @@ void fileReader::setShowArea(int height, int width)
 
 qint64 fileReader::getShowNum(const QFont &font)
 {
-	qint64 curPos;
 	qint64 lastPos;
 	int i = 0;
 	contentBuffer.clear();
+//	in->seek(curpos);
 	if(in->atEnd())
 	{
-		return 0;
+		return -1;
 	}
 
 	lastPos = in->pos();
@@ -121,11 +126,33 @@ qint64 fileReader::getShowNum(const QFont &font)
 
 QString & fileReader::getShowContent(const QFont &font)
 {
-	qint64 showNum = getShowNum(font);
 	contentBuffer.clear();
+	/* read content */
+	in->seek(curpos);
+	qint64 showNum = getShowNum(font);
+	lastpos = curpos;
 	contentBuffer = in->read(showNum);
+
+	/*revert */
+	curpos = in->pos();
+	in->reset();
+
 	return contentBuffer;
 }
 
+QString &fileReader::getCurShowContent(const QFont &font)
+{
+	contentBuffer.clear();
+	/* read content */
+	in->seek(lastpos);
+	qint64 showNum = getShowNum(font);
+	contentBuffer = in->read(showNum);
+
+	/*revert */
+	//do not remember the pos
+	in->reset();
+
+	return contentBuffer;;
+}
 
 

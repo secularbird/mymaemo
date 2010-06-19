@@ -13,6 +13,9 @@
 #include <QtCore/QtGlobal>
 #include <QtGui/QFontMetrics>
 
+#include <QtGui/QDesktopWidget>
+
+
 #include <QtCore/QDebug>
 #include "mmm_configuremanager.h"
 
@@ -30,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle(tr("sreader"));
 //   vScrollBar = ui->textBrowser->verticalScrollBar();
 //    connect(vScrollBar,SIGNAL(valueChanged(int)), this, SLOT(scrollchanged(int)));
+    connect(QApplication::desktop(), SIGNAL(resized(int)), this, SLOT(orientationChanged()));
+
     lastPos = 0;
     QFont font = mmm_configuremanager::instance()->getFont();
     ui->textBrowser->setFont(font);
@@ -68,16 +73,16 @@ void MainWindow::on_actionOpen_triggered()
     fileReader::instance()->setShowArea(ui->textBrowser->geometry().height(),
         		ui->textBrowser->geometry().width());
         qDebug()<<ui->textBrowser->geometry().height()<<"\t"<<ui->textBrowser->geometry().width();
-    updatefile(file);
+    nextPage();
 
     QFileInfo fi(filePath);
     this->setWindowTitle(fi.baseName());
 }
 
 
-void MainWindow::updatefile(QFile &file)
+void MainWindow::updatefile()
 {
-	QString content = fileReader::instance()->getShowContent(ui->textBrowser->font());
+	QString content = fileReader::instance()->getCurShowContent(ui->textBrowser->font());
     ui->textBrowser->setPlainText(content);
 }
 
@@ -92,6 +97,8 @@ void MainWindow::fontChanged(QFont &font)
 {
     ui->textBrowser->setFont(font);
     mmm_configuremanager::instance()->setFont(font);
+
+    updatefile();
 }
 
 void MainWindow::mousePressEvent (QMouseEvent * event)
@@ -124,4 +131,17 @@ void MainWindow::nextPage()
 {
 	QString content = fileReader::instance()->getShowContent(ui->textBrowser->font());
     ui->textBrowser->setPlainText(content);
+}
+
+void MainWindow::orientationChanged()
+{
+	QRect screenGeometry = QApplication::desktop()->screenGeometry();
+	if (screenGeometry.width() > screenGeometry.height())
+	{
+		updatefile();
+	}
+	else
+	{
+		updatefile();
+	}
 }

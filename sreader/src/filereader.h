@@ -17,6 +17,8 @@ public:
 
 	QString &getShowContent(const QFont &font);
 
+	QString &getCurShowContent(const QFont &font);
+
 private:
 	fileReader();
 	fileReader(const fileReader&);
@@ -30,6 +32,8 @@ private:
 	QFile *file;
 	QTextStream *in;
 	QSize area;
+	qint64 curpos;
+	qint64 lastpos;
 	QString contentBuffer;
 };
 
