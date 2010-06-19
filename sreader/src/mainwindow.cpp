@@ -27,6 +27,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    textbrowzerview = new TextBrowzerView(this);
+
+    ui->actionFont_Setting->setDisabled(true);
+
     mmm_configuremanager::instance()->init();
     QString filePath = mmm_configuremanager::instance()->getFilePath();
 
@@ -35,9 +39,12 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(vScrollBar,SIGNAL(valueChanged(int)), this, SLOT(scrollchanged(int)));
     connect(QApplication::desktop(), SIGNAL(resized(int)), this, SLOT(orientationChanged()));
 
-    lastPos = 0;
+//    lastPos = 0;
     QFont font = mmm_configuremanager::instance()->getFont();
-    ui->textBrowser->setFont(font);
+//    ui->textBrowser->setFont(font);
+    textbrowzerview->setFont(font);
+    this->setCentralWidget(textbrowzerview);
+
     qDebug()<<font.pointSize();
 
 }
@@ -70,9 +77,9 @@ void MainWindow::on_actionOpen_triggered()
                                                     tr("Open file"), QDir::homePath(), tr("Text Files (*.txt)"));
 
     fileReader::instance()->openFile(filePath);
-    fileReader::instance()->setShowArea(ui->textBrowser->geometry().height(),
-        		ui->textBrowser->geometry().width());
-        qDebug()<<ui->textBrowser->geometry().height()<<"\t"<<ui->textBrowser->geometry().width();
+    fileReader::instance()->setShowArea(textbrowzerview->geometry().height(),
+    		textbrowzerview->geometry().width());
+        qDebug()<<textbrowzerview->geometry().height()<<"\t"<<textbrowzerview->geometry().width();
     nextPage();
 
     QFileInfo fi(filePath);
@@ -82,20 +89,33 @@ void MainWindow::on_actionOpen_triggered()
 
 void MainWindow::updatefile()
 {
+	/*
 	QString content = fileReader::instance()->getCurShowContent(ui->textBrowser->font());
     ui->textBrowser->setPlainText(content);
+    */
+	QStringList content = fileReader::instance()->getCurShowContentList(textbrowzerview->getFont());
+	textbrowzerview->setContent(content);
+
 }
 
 void MainWindow::on_actionFont_Setting_triggered()
 {
+/*
     mmm_settingDialog settingDialog;
+    settingDialog.setDefaultFont(ui->textBrowser->font());
     connect(&settingDialog, SIGNAL(fontChanged(QFont&)), this, SLOT(fontChanged(QFont&)));
     settingDialog.exec();
+*/
 }
 
 void MainWindow::fontChanged(QFont &font)
 {
-    ui->textBrowser->setFont(font);
+	if (!file.isOpen())
+	{
+		return;
+	}
+
+	textbrowzerview->setFont(font);
     mmm_configuremanager::instance()->setFont(font);
 
     updatefile();
@@ -129,8 +149,12 @@ void MainWindow::prePage()
 
 void MainWindow::nextPage()
 {
+	/*
 	QString content = fileReader::instance()->getShowContent(ui->textBrowser->font());
     ui->textBrowser->setPlainText(content);
+    */
+	QStringList content = fileReader::instance()->getShowContentList(textbrowzerview->getFont());
+	textbrowzerview->setContent(content);
 }
 
 void MainWindow::orientationChanged()

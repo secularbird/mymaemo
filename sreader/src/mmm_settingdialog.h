@@ -10,7 +10,7 @@ class mmm_settingDialog : public QDialog
     Q_OBJECT
 public:
     mmm_settingDialog();
-    void setDefaultFont(QFont &font);
+    void setDefaultFont(const QFont &font);
     const QFont &getFont() const;
 
 signals:

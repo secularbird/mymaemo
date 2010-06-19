@@ -86,7 +86,7 @@ qint64 fileReader::getShowNum(const QFont &font)
 	}
 	qDebug()<<contentBuffer;
 */
-	contentBuffer += in->read(1024);
+	contentBuffer = in->read(1024);
 
 	int bufSize = contentBuffer.size();
 	int currentrow = 0 ;
@@ -153,6 +153,139 @@ QString &fileReader::getCurShowContent(const QFont &font)
 	in->reset();
 
 	return contentBuffer;;
+}
+
+QStringList &fileReader::getShowContentList(const QFont &font)
+{
+	qint64 lastPos;
+	int i = 0;
+	contentlist.clear();
+	contentBuffer.clear();
+	if(in->atEnd())
+	{
+		return contentlist;
+	}
+	in->seek(curpos);
+	QFontMetrics fontmetrics(font);
+	int rowMax = area.height() / fontmetrics.height();
+	int colWidth = area.width();
+
+	qDebug()<<area.height()<<"\t"<<area.width();
+	qDebug()<<fontmetrics.height();
+	qDebug()<<rowMax;
+//	for (i = 0;i<rowMax;i++)
+//	{
+//		contentBuffer += in->readLine()+"\n";
+//	}
+	contentBuffer = in->read(1024);
+	qDebug()<<contentBuffer;
+	int bufSize = contentBuffer.size();
+	int currentrow = 0 ;
+	int colSize = 0 ;
+	int linestart = 0;
+	for(i=0; i<bufSize; ++i)
+	{
+		if(currentrow >= rowMax)
+		{
+			break;
+		}
+		if(contentBuffer[i] == '\n')
+		{
+			currentrow++;
+			qDebug()<<"current row"<<currentrow<<"\t"<<contentBuffer.mid(linestart,i-linestart);
+			contentlist.append(contentBuffer.mid(linestart,i-linestart));
+			linestart = i+1;
+			colSize = 0;
+		}
+		else{
+			colSize += fontmetrics.width(contentBuffer[i]);
+			if (colSize <= colWidth){
+			//	qDebug()<<contentBuffer[i];
+
+			}
+			else{
+				i--;
+				currentrow++;
+				qDebug()<<"current row"<<currentrow<<"\t"<<contentBuffer.mid(linestart,i-linestart);
+				contentlist.append(contentBuffer.mid(linestart,i-linestart));
+				linestart = i+1;
+				colSize = 0;
+			}
+		}
+	}
+	in->seek(curpos);
+
+	QString tmp = in->read(i+1);
+	qDebug()<<"real read"<<tmp;
+	curpos = in->pos();
+	in->reset();
+	return contentlist;
+}
+
+QStringList &fileReader::getCurShowContentList(const QFont &font)
+{
+	qint64 lastPos;
+	int i = 0;
+	contentlist.clear();
+	contentBuffer.clear();
+	if(in->atEnd())
+	{
+		return contentlist;
+	}
+	in->seek(curpos);
+	lastPos = in->pos();
+	QFontMetrics fontmetrics(font);
+	int rowMax = area.height() / fontmetrics.height();
+	int colWidth = area.width();
+
+	qDebug()<<area.height()<<"\t"<<area.width();
+	qDebug()<<fontmetrics.height();
+	qDebug()<<rowMax;
+//	for (i = 0;i<rowMax;i++)
+//	{
+//		contentBuffer += in->readLine()+"\n";
+//	}
+	contentBuffer = in->read(1024);
+	qDebug()<<contentBuffer;
+	int bufSize = contentBuffer.size();
+	int currentrow = 0 ;
+	int colSize = 0 ;
+	int linestart = 0;
+	int fontNum = 0;
+	for(i=0; i<bufSize; ++i)
+	{
+		if(currentrow >= rowMax)
+		{
+			break;
+		}
+		if(contentBuffer[i] == '\n')
+		{
+			currentrow++;
+			qDebug()<<"current row"<<currentrow<<"\t"<<contentBuffer.mid(linestart,i-linestart);
+			contentlist.append(contentBuffer.mid(linestart,i-linestart));
+			linestart = i+1;
+			fontNum++;
+			colSize = 0;
+		}
+		else{
+			colSize += fontmetrics.width(contentBuffer[i]);
+			if (colSize <= colWidth){
+			//	qDebug()<<contentBuffer[i];
+				fontNum++;
+			}
+			else{
+				i--;
+				currentrow++;
+				qDebug()<<"current row"<<currentrow<<"\t"<<contentBuffer.mid(linestart,i-linestart);
+				contentlist.append(contentBuffer.mid(linestart,i-linestart));
+				linestart = i+1;
+				colSize = 0;
+			}
+		}
+	}
+	in->seek(lastPos);
+	in->reset();
+	return contentlist;
 }
 
 
