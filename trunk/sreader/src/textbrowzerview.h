@@ -16,6 +16,7 @@ public:
     void setContent(const QStringList &content);
     void setFont(const QFont &font);
     const QFont &getFont() const;
+    void setArea(const QSize &area);
 
 protected:
 	void paintEvent(QPaintEvent *);
@@ -23,6 +24,7 @@ protected:
 private:
 	QStringList showcontent;
 	QFont font;
+	QSize area;
 };
 
 #endif // TEXTBROWZERVIEW_H
