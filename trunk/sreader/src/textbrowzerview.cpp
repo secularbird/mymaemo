@@ -19,7 +19,7 @@ void TextBrowzerView::paintEvent(QPaintEvent *)
 {
 	QFontMetrics fontmetrics(font);
     QPainter painter(this);
-    painter.setPen(Qt::white);
+    painter.setPen(Qt::green);
     painter.setFont(font);
     int size = showcontent.size();
     qDebug()<<"start draw-----------------------------------------------------------";

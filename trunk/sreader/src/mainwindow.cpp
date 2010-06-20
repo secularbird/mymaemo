@@ -89,10 +89,6 @@ void MainWindow::on_actionOpen_triggered()
 
 void MainWindow::updatefile()
 {
-	/*
-	QString content = fileReader::instance()->getCurShowContent(ui->textBrowser->font());
-    ui->textBrowser->setPlainText(content);
-    */
 	fileReader::instance()->setShowArea(textbrowzerview->height(),textbrowzerview->width());
 	QStringList content = fileReader::instance()->getCurShowContentList(textbrowzerview->getFont());
 	textbrowzerview->setContent(content);
@@ -149,10 +145,6 @@ void MainWindow::prePage()
 
 void MainWindow::nextPage()
 {
-	/*
-	QString content = fileReader::instance()->getShowContent(ui->textBrowser->font());
-    ui->textBrowser->setPlainText(content);
-    */
 	fileReader::instance()->setShowArea(textbrowzerview->height(),textbrowzerview->width());
 	QStringList content = fileReader::instance()->getShowContentList(textbrowzerview->getFont());
 	textbrowzerview->setContent(content);

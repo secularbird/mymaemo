@@ -65,7 +65,6 @@ qint64 fileReader::getShowNum(const QFont &font)
 	qint64 lastPos;
 	int i = 0;
 	contentBuffer.clear();
-//	in->seek(curpos);
 	if(in->atEnd())
 	{
 		return -1;
@@ -79,13 +78,6 @@ qint64 fileReader::getShowNum(const QFont &font)
 	qDebug()<<area.height()<<"\t"<<area.width();
 	qDebug()<<fontmetrics.height();
 	qDebug()<<rowMax;
-/*
-	for(i = 0; i< rowMax; ++i)
-	{
-		contentBuffer += in->readLine()+QString('\n');
-	}
-	qDebug()<<contentBuffer;
-*/
 	contentBuffer = in->read(1024);
 
 	int bufSize = contentBuffer.size();
@@ -174,10 +166,6 @@ QStringList &fileReader::getShowContentList(const QFont &font)
 	qDebug()<<area.height()<<"\t"<<area.width();
 	qDebug()<<fontmetrics.height();
 	qDebug()<<rowMax;
-//	for (i = 0;i<rowMax;i++)
-//	{
-//		contentBuffer += in->readLine()+"\n";
-//	}
 	contentBuffer = in->read(1024);
 	qDebug()<<contentBuffer;
 	int bufSize = contentBuffer.size();
@@ -242,10 +230,6 @@ QStringList &fileReader::getCurShowContentList(const QFont &font)
 	qDebug()<<area.height()<<"\t"<<area.width();
 	qDebug()<<fontmetrics.height();
 	qDebug()<<rowMax;
-//	for (i = 0;i<rowMax;i++)
-//	{
-//		contentBuffer += in->readLine()+"\n";
-//	}
 	contentBuffer = in->read(1024);
 	qDebug()<<contentBuffer;
 	int bufSize = contentBuffer.size();
