@@ -29,7 +29,6 @@ private:
     Ui::MainWindow *ui;
 
     void updatefile();
-    void prePage();
     void nextPage();
 
     static int bufferSize;

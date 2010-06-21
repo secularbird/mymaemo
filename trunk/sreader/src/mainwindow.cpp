@@ -80,7 +80,20 @@ void MainWindow::on_actionOpen_triggered()
     fileReader::instance()->setShowArea(textbrowzerview->geometry().height(),
     		textbrowzerview->geometry().width());
         qDebug()<<textbrowzerview->geometry().height()<<"\t"<<textbrowzerview->geometry().width();
-    nextPage();
+    QString historypath = mmm_configuremanager::instance()->getFilePath();
+    qDebug()<<historypath<<"\t"<<filePath;
+    if(historypath == filePath)
+    {
+    	int pos = mmm_configuremanager::instance()->getFileStartPos();
+    	fileReader::instance()->setStartPoint(pos);
+    	updatefile();
+    }
+    else
+    {
+    	mmm_configuremanager::instance()->setFilePath(filePath);
+    	mmm_configuremanager::instance()->setFileStartPos(0);
+    	nextPage();
+    }
 
     QFileInfo fi(filePath);
     this->setWindowTitle(fi.baseName());
@@ -91,6 +104,8 @@ void MainWindow::updatefile()
 {
 	fileReader::instance()->setShowArea(textbrowzerview->height(),textbrowzerview->width());
 	QStringList content = fileReader::instance()->getCurShowContentList(textbrowzerview->getFont());
+	int pos = fileReader::instance()->getStartPoint();
+	mmm_configuremanager::instance()->setFileStartPos(pos);
 	textbrowzerview->setContent(content);
 }
 
@@ -134,19 +149,16 @@ void MainWindow::mouseReleaseEvent (QMouseEvent * event)
 	}
 	else if(endPoint.x() - startPoint.x() > 10)
 	{
-	//	prePage();
+
 	}
-}
-
-void MainWindow::prePage()
-{
-
 }
 
 void MainWindow::nextPage()
 {
 	fileReader::instance()->setShowArea(textbrowzerview->height(),textbrowzerview->width());
 	QStringList content = fileReader::instance()->getShowContentList(textbrowzerview->getFont());
+	int pos = fileReader::instance()->getStartPoint();
+	mmm_configuremanager::instance()->setFileStartPos(pos);
 	textbrowzerview->setContent(content);
 }
 

@@ -14,12 +14,13 @@ public:
 	static fileReader* instance();
 	bool openFile(const QString &filePath);
 	void setShowArea(int height, int width);
+	void setStartPoint(int index);
+	int getStartPoint();
 
-	QString &getShowContent(const QFont &font);
 	QStringList &getShowContentList(const QFont &font);
 
-	QString &getCurShowContent(const QFont &font);
 	QStringList &getCurShowContentList(const QFont &font);
+
 
 private:
 	fileReader();
@@ -31,13 +32,19 @@ private:
 	qint64 getShowNum(const QFont &font);
 
 	static fileReader* filereader;
+
 	QFile *file;
 	QTextStream *in;
 	QSize area;
-	qint64 curpos;
-	qint64 lastpos;
-	QString contentBuffer;
+//	qint64 curpos;
+//	qint64 lastpos;
+
+//	QString contentBuffer;
 	QStringList contentlist;
+
+	QString filecontent;
+	int lastIndex;
+	int curIndex;
 };
 
 

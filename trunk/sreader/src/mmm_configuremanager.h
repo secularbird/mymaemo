@@ -19,7 +19,11 @@ public:
 	QFont getFont();
 
 	void setFont(const QFont &font);
+
 	void setFilePath(const QString &filepath);
+
+	void setFileStartPos(int pos);
+	int getFileStartPos();
 
 private:
 	mmm_configuremanager();
