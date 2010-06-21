@@ -1,6 +1,7 @@
 #include "mmm_configuremanager.h"
 #include <QtCore/QFile>
 #include <QtGui/QFontDatabase>
+#include <QtCore/QDir>
 
 mmm_configuremanager::mmm_configuremanager()
 :setting(new QSettings())
@@ -22,7 +23,7 @@ mmm_configuremanager* mmm_configuremanager::instance()
 void mmm_configuremanager::init()
 {
 	//if configure file not exist
-	QFile file("$HOME/.config/secularbird/sreader.conf");
+	QFile file(QDir::homePath()+"/.config/secularbird/sreader.conf");
 	if(!file.exists()) {
 		//then restore
 		restore();
@@ -52,13 +53,12 @@ void mmm_configuremanager::restore()
 	setting->beginGroup("Font");
 	setting->setValue("family", "Helvetica [Cronyx]");
 	setting->setValue("style", "Normal");
-	setting->setValue("size", 10);
+	setting->setValue("size", 18);
 	setting->endGroup();
 
 	setting->beginGroup("File");
-	setting->setValue("filepath", "$HOME");
+	setting->setValue("filepath", QDir::homePath());
 	setting->setValue("startpostion", 0);
-	setting->setValue("pagesize",1024);
 	setting->endGroup();
 }
 
@@ -104,4 +104,17 @@ void mmm_configuremanager::setFont(const QFont &font)
 	setting->setValue("Font/style", font.style());
 	setting->setValue("Font/size", font.pointSize());
 
+}
+
+void mmm_configuremanager::setFileStartPos(int pos)
+{
+	if (setting == NULL){
+			init();
+	}
+	setting->setValue("File/startpostion",pos);
+}
+
+int mmm_configuremanager::getFileStartPos()
+{
+	return setting->value("File/startpostion").toInt();
 }

@@ -22,17 +22,17 @@ void TextBrowzerView::paintEvent(QPaintEvent *)
     painter.setPen(Qt::green);
     painter.setFont(font);
     int size = showcontent.size();
-    qDebug()<<"start draw-----------------------------------------------------------";
+//    qDebug()<<"start draw-----------------------------------------------------------";
     for(int i=0;i<size; i++)
     {
     	painter.drawText(0,i*fontmetrics.height(), this->width(), fontmetrics.height(),
     			Qt::AlignLeft,
     			showcontent.at(i));
 
-    	qDebug()<<i*fontmetrics.height()<<"\t"<<this->width();
-    	qDebug()<<showcontent.at(i);
+ //   	qDebug()<<i*fontmetrics.height()<<"\t"<<this->width();
+ //   	qDebug()<<showcontent.at(i);
     }
-    qDebug()<<"end draw-----------------------------------------------------------";
+ //   qDebug()<<"end draw-----------------------------------------------------------";
 }
 
 void TextBrowzerView::setContent(const QStringList &content)
