@@ -34,14 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
     mmm_configuremanager::instance()->init();
     QString filePath = mmm_configuremanager::instance()->getFilePath();
 
-    this->setWindowTitle(tr("sreader"));
-//   vScrollBar = ui->textBrowser->verticalScrollBar();
-//    connect(vScrollBar,SIGNAL(valueChanged(int)), this, SLOT(scrollchanged(int)));
+    this->setWindowTitle(tr("SReader"));
+
     connect(QApplication::desktop(), SIGNAL(resized(int)), this, SLOT(orientationChanged()));
 
-//    lastPos = 0;
     QFont font = mmm_configuremanager::instance()->getFont();
-//    ui->textBrowser->setFont(font);
     textbrowzerview->setFont(font);
     this->setCentralWidget(textbrowzerview);
 
@@ -74,7 +71,7 @@ void MainWindow::on_actionOpen_triggered()
 {
     /*open file dialog*/
     QString filePath = QFileDialog::getOpenFileName(this,
-                                                    tr("Open file"), QDir::homePath(), tr("Text Files (*.txt)"));
+                                                    tr("Open file"), QDir::homePath(), tr("Text Files (*.[Tt][Xx][Tt])"));
 
     /* no file was read*/
     if (filePath.isEmpty())
@@ -87,6 +84,7 @@ void MainWindow::on_actionOpen_triggered()
         qDebug()<<textbrowzerview->geometry().height()<<"\t"<<textbrowzerview->geometry().width();
     QString historypath = mmm_configuremanager::instance()->getFilePath();
     qDebug()<<historypath<<"\t"<<filePath;
+
     if(historypath == filePath)
     {
     	int pos = mmm_configuremanager::instance()->getFileStartPos();
@@ -97,6 +95,10 @@ void MainWindow::on_actionOpen_triggered()
     {
     	mmm_configuremanager::instance()->setFilePath(filePath);
     	mmm_configuremanager::instance()->setFileStartPos(0);
+
+    	int pos = mmm_configuremanager::instance()->getFileStartPos();
+    	fileReader::instance()->setStartPoint(pos);
+
     	nextPage();
     }
 
@@ -111,7 +113,16 @@ void MainWindow::updatefile()
 	QStringList content = fileReader::instance()->getCurShowContentList(textbrowzerview->getFont());
 	int pos = fileReader::instance()->getStartPoint();
 	mmm_configuremanager::instance()->setFileStartPos(pos);
-	textbrowzerview->setContent(content);
+	if (content.isEmpty())
+	{
+		QStringList fileend;
+		fileend.append(QString("File End"));
+		textbrowzerview->setContent(fileend);
+	}
+	else
+	{
+		textbrowzerview->setContent(content);
+	}
 }
 
 void MainWindow::on_actionFont_Setting_triggered()
@@ -164,7 +175,16 @@ void MainWindow::nextPage()
 	QStringList content = fileReader::instance()->getShowContentList(textbrowzerview->getFont());
 	int pos = fileReader::instance()->getStartPoint();
 	mmm_configuremanager::instance()->setFileStartPos(pos);
-	textbrowzerview->setContent(content);
+	if (content.isEmpty())
+	{
+		QStringList fileend;
+		fileend.append(QString("File End"));
+		textbrowzerview->setContent(fileend);
+	}
+	else
+	{
+		textbrowzerview->setContent(content);
+	}
 }
 
 void MainWindow::orientationChanged()

@@ -17,9 +17,9 @@ public:
 	void setStartPoint(int index);
 	int getStartPoint();
 
-	QStringList &getShowContentList(const QFont &font);
+	const QStringList &getShowContentList(const QFont &font);
 
-	QStringList &getCurShowContentList(const QFont &font);
+	const QStringList &getCurShowContentList(const QFont &font);
 
 
 private:
@@ -29,20 +29,18 @@ private:
 
 	fileReader& operator =(const fileReader& );
 
-	qint64 getShowNum(const QFont &font);
+	const int readFrom(const int start, QStringList &conlist, const QFont &font);
 
 	static fileReader* filereader;
 
 	QFile *file;
 	QTextStream *in;
 	QSize area;
-//	qint64 curpos;
-//	qint64 lastpos;
 
-//	QString contentBuffer;
 	QStringList contentlist;
 
 	QString filecontent;
+
 	int lastIndex;
 	int curIndex;
 };

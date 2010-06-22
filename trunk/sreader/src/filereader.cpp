@@ -1,7 +1,6 @@
 #include "filereader.h"
 #include <QtGui/QFontMetrics>
 
-
 #include <QtCore/QDebug>
 
 
@@ -12,7 +11,7 @@ fileReader::fileReader()
 	file = new QFile;
 	in = new QTextStream;
 	area = QSize(800,480);
-//	curpos = 0;
+
 	lastIndex = 0;
 	curIndex = 0;
 }
@@ -52,6 +51,7 @@ bool fileReader::openFile(const QString &filePath)
 	}
 
 	in->setDevice(file);
+	//read all file content line by line
 	while(!in->atEnd())
 	{
 		filecontent += in->readLine()+"\n";
@@ -77,69 +77,38 @@ int fileReader::getStartPoint()
 	return lastIndex;
 }
 
-QStringList &fileReader::getShowContentList(const QFont &font)
+const QStringList &fileReader::getShowContentList(const QFont &font)
 {
-	int i = 0;
-	contentlist.clear();
-	if(curIndex > filecontent.size())
+	//avoid invaild curindex
+	if((curIndex > filecontent.size())
+		||(curIndex < 0))
 	{
-		return contentlist;
+		curIndex = 0;
 	}
 	lastIndex = curIndex;
-	QFontMetrics fontmetrics(font);
-	int rowMax = area.height() / fontmetrics.height();
-	int colWidth = area.width();
 
-	qDebug()<<area.height()<<"\t"<<area.width();
-	qDebug()<<fontmetrics.height();
-	qDebug()<<rowMax;
-
-	int bufSize = filecontent.size();
-	int currentrow = 0 ;
-	int colSize = 0 ;
-	int linestart = curIndex;
-	for(i=curIndex; i<bufSize; ++i)
-	{
-		if(currentrow >= rowMax)
-		{
-			break;
-		}
-		if(filecontent[i] == '\n')
-		{
-			currentrow++;
-			contentlist.append(filecontent.mid(linestart,i-linestart+1));
-			linestart = i+1;
-			colSize = 0;
-		}
-		else{
-			colSize += fontmetrics.width(filecontent[i]);
-			if (colSize <= colWidth){
-
-			}
-			else{
-				i--;
-				currentrow++;
-				contentlist.append(filecontent.mid(linestart,i-linestart+1));
-				linestart = i+1;
-				colSize = 0;
-			}
-		}
-	}
-
-	curIndex = linestart;
-	return contentlist;
-}
-
-QStringList &fileReader::getCurShowContentList(const QFont &font)
-{
-	int i = 0;
 	contentlist.clear();
-	if(curIndex > filecontent.size())
-	{
-		return contentlist;
-	}
-	curIndex = lastIndex;
+	curIndex = readFrom(lastIndex, contentlist, font);
 
+	return contentlist;
+}
+
+const QStringList &fileReader::getCurShowContentList(const QFont &font)
+{
+	//to avoid invaild lastIndex
+	if((lastIndex > filecontent.size())
+		||(lastIndex < 0 ))
+	{
+		lastIndex = 0;
+	}
+	contentlist.clear();
+	curIndex = readFrom(lastIndex, contentlist, font);
+
+	return contentlist;
+}
+
+const int fileReader::readFrom(const int start, QStringList &conlist, const QFont &font)
+{
 	QFontMetrics fontmetrics(font);
 	int rowMax = area.height() / fontmetrics.height();
 	int colWidth = area.width();
@@ -148,11 +117,12 @@ QStringList &fileReader::getCurShowContentList(const QFont &font)
 	qDebug()<<fontmetrics.height();
 	qDebug()<<rowMax;
 
+	int i = 0;
 	int bufSize = filecontent.size();
 	int currentrow = 0 ;
 	int colSize = 0 ;
-	int linestart = curIndex;
-	for(i=curIndex; i<bufSize; ++i)
+	int linestart = start;
+	for(i=start; i<bufSize; ++i)
 	{
 		if(currentrow >= rowMax)
 		{
@@ -161,7 +131,7 @@ QStringList &fileReader::getCurShowContentList(const QFont &font)
 		if(filecontent[i] == '\n')
 		{
 			currentrow++;
-			contentlist.append(filecontent.mid(linestart,i-linestart+1));
+			conlist.append(filecontent.mid(linestart,i-linestart+1));
 			linestart = i+1;
 			colSize = 0;
 		}
@@ -173,15 +143,14 @@ QStringList &fileReader::getCurShowContentList(const QFont &font)
 			else{
 				i--;
 				currentrow++;
-				contentlist.append(filecontent.mid(linestart,i-linestart+1));
+				conlist.append(filecontent.mid(linestart,i-linestart+1));
 				linestart = i+1;
 				colSize = 0;
 			}
 		}
 	}
-	curIndex = linestart;
-	return contentlist;
-}
 
+	return linestart;
+}
 
 
