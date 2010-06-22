@@ -26,6 +26,7 @@ HEADERS     = src/mainwindow.h \
 			  src/mmm_configuremanager.h \
 			  src/filereader.h \
 			  src/textbrowzerview.h \
+			  src/jumptodialog.h \
 			  src/system.h
 SOURCES     = src/main.cpp \
               src/mainwindow.cpp \
@@ -33,9 +34,11 @@ SOURCES     = src/main.cpp \
               src/mmm_configuremanager.cpp \
               src/filereader.cpp \
               src/textbrowzerview.cpp \
+              src/jumptodialog.cpp \
               src/system.cpp
               
-FORMS		= uiform/mainwindow.ui
+FORMS		= uiform/mainwindow.ui \
+			  uiform/jumptodialog.ui
 
 # TEMPLATE = app
 # DESTDIR = /path/to/installation

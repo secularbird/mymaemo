@@ -12,6 +12,8 @@ fileReader::fileReader()
 	in = new QTextStream;
 	area = QSize(800,480);
 
+	filecontent.clear();
+
 	lastIndex = 0;
 	curIndex = 0;
 }
@@ -151,6 +153,18 @@ const int fileReader::readFrom(const int start, QStringList &conlist, const QFon
 	}
 
 	return linestart;
+}
+
+const int fileReader::getWordCount()
+{
+	if(filecontent.isEmpty())
+	{
+		return 0;
+	}
+	else
+	{
+		return filecontent.size();
+	}
 }
 
 

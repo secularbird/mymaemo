@@ -31,6 +31,7 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionFont_Setting"/>
+    <addaction name="actionJump_to"/>
    </widget>
    <addaction name="menuOpen"/>
   </widget>
@@ -42,6 +43,11 @@
   <action name="actionFont_Setting">
    <property name="text">
     <string>Font Setting</string>
+   </property>
+  </action>
+  <action name="actionJump_to">
+   <property name="text">
+    <string>Jump to</string>
    </property>
   </action>
  </widget>
