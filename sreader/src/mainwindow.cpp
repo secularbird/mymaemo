@@ -76,6 +76,11 @@ void MainWindow::on_actionOpen_triggered()
     QString filePath = QFileDialog::getOpenFileName(this,
                                                     tr("Open file"), QDir::homePath(), tr("Text Files (*.txt)"));
 
+    /* no file was read*/
+    if (filePath.isEmpty())
+    {
+    	return;
+    }
     fileReader::instance()->openFile(filePath);
     fileReader::instance()->setShowArea(textbrowzerview->geometry().height(),
     		textbrowzerview->geometry().width());
