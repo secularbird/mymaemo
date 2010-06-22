@@ -62,24 +62,6 @@ void mmm_configuremanager::restore()
 	setting->endGroup();
 }
 
-QString mmm_configuremanager::getFilePath()
-{
-	if (setting == NULL){
-		init();
-	}
-	QString filePath = setting->value("File/filepath").toString();
-
-	return filePath;
-}
-
-void mmm_configuremanager::setFilePath(const QString &filePath)
-{
-	if(setting == NULL){
-		init();
-	}
-	setting->setValue("File/filepath",filePath);
-}
-
 QFont mmm_configuremanager::getFont()
 {
 	if (setting == NULL){
@@ -104,6 +86,24 @@ void mmm_configuremanager::setFont(const QFont &font)
 	setting->setValue("Font/style", font.style());
 	setting->setValue("Font/size", font.pointSize());
 
+}
+
+QString mmm_configuremanager::getFilePath()
+{
+	if (setting == NULL){
+		init();
+	}
+	QString filePath = setting->value("File/filepath").toString();
+
+	return filePath;
+}
+
+void mmm_configuremanager::setFilePath(const QString &filePath)
+{
+	if(setting == NULL){
+		init();
+	}
+	setting->setValue("File/filepath",filePath);
 }
 
 void mmm_configuremanager::setFileStartPos(int pos)
