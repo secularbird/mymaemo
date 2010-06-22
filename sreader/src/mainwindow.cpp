@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "mmm_settingdialog.h"
 #include "filereader.h"
+#include "jumptodialog.h"
 
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
@@ -18,8 +19,6 @@
 
 #include <QtCore/QDebug>
 #include "mmm_configuremanager.h"
-
-int MainWindow::bufferSize = 1024;
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -48,10 +47,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    if (file.isOpen())
-    {
-        file.close();
-    }
     delete ui;
 }
 
@@ -135,17 +130,42 @@ void MainWindow::on_actionFont_Setting_triggered()
 */
 }
 
+void MainWindow::on_actionJump_to_triggered()
+{
+	JumpToDialog jumpto;
+	int max = fileReader::instance()->getWordCount();
+	jumpto.setMaxValue(max);
+	int cur = fileReader::instance()->getStartPoint();
+	jumpto.setCurValue(cur);
+	connect(&jumpto, SIGNAL(valueChanged(int)), this, SLOT(startPosChanged(int)));
+
+	jumpto.exec();
+}
+
 void MainWindow::fontChanged(QFont &font)
 {
-	if (!file.isOpen())
-	{
-		return;
-	}
-
 	textbrowzerview->setFont(font);
     mmm_configuremanager::instance()->setFont(font);
 
     updatefile();
+}
+
+void MainWindow::startPosChanged(int value)
+{
+	fileReader::instance()->setShowArea(textbrowzerview->height(),textbrowzerview->width());
+	fileReader::instance()->setStartPoint(value);
+	QStringList content = fileReader::instance()->getCurShowContentList(textbrowzerview->getFont());
+	mmm_configuremanager::instance()->setFileStartPos(value);
+	if (content.isEmpty())
+	{
+		QStringList fileend;
+		fileend.append(QString("File End"));
+		textbrowzerview->setContent(fileend);
+	}
+	else
+	{
+		textbrowzerview->setContent(content);
+	}
 }
 
 void MainWindow::mousePressEvent (QMouseEvent * event)

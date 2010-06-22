@@ -16,6 +16,7 @@ public:
 	void setShowArea(int height, int width);
 	void setStartPoint(int index);
 	int getStartPoint();
+	const int getWordCount();
 
 	const QStringList &getShowContentList(const QFont &font);
 

@@ -31,20 +31,21 @@ private:
     void updatefile();
     void nextPage();
 
-    static int bufferSize;
-    QString contentBuffer;
-    QTextStream *in;
-    QFile file;
-//    int lastPos;
-//   QScrollBar *vScrollBar;
+//    static int bufferSize;
+//    QString contentBuffer;
+//    QTextStream *in;
+//   QFile file;
+
     QPoint startPoint;
     TextBrowzerView *textbrowzerview;
 
 private slots:
     void on_actionFont_Setting_triggered();
     void on_actionOpen_triggered();
- //   void scrollchanged(int value);
+    void on_actionJump_to_triggered();
+
     void fontChanged(QFont &font);
+    void startPosChanged(int value);
     void orientationChanged();
 };
 
